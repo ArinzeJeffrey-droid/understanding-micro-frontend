@@ -6,23 +6,18 @@ const cors = require("cors");
 const App = Express();
 
 App.use(cors());
-App.use(Express.static('public'))
+App.use(Express.static("public"));
 
-App.get("/movies", (req, res) => {
+App.get("/movies", (_, res) => {
   res.send(moviesData);
 });
 
 App.get("/movies/:id", (req, res) => {
   moviesData.find((movie) => {
-    console.log(movie.id, req.params.id);
     if (movie.id === parseInt(req.params.id)) {
-      // res.send(movie.imageUrl);
       const options = {
         root: path.join(__dirname, "assets/images/"),
       };
-
-      console.log(options.root+movie.imageUrl);
-
       res.sendFile(movie.imageUrl, options, (err) => {
         if (err) {
           res.sendStatus(404);
@@ -32,7 +27,6 @@ App.get("/movies/:id", (req, res) => {
       });
     }
   });
-  
 });
 
 App.listen(5555, () => {
