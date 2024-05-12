@@ -1,0 +1,1 @@
+A simple application to understand how micro-frontends works
