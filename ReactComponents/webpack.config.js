@@ -1,13 +1,14 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   mode: "development",
   entry: path.resolve(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js"
+    filename: "[name].bundle.js",
   },
   devServer: {
     static: {
@@ -17,11 +18,19 @@ module.exports = {
     port: 3002,
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "components",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./MovieCard": "./src/components/MovieCard/MovieCard.jsx",
+        "./BuyButton": "./src/components/Button/BuyButton/BuyButton.jsx",
+      },
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-    }),    
+    }),
   ],
   module: {
     rules: [
