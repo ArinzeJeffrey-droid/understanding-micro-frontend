@@ -4,7 +4,7 @@ This is a simple application designed to help me understand how micro frontends 
 
 ## How to run project
 
-// TODO later
+// TODO: create procfile to use overmind to run the node processes 
 
 ## My notes
 

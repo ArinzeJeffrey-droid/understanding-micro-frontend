@@ -13,7 +13,7 @@ const MovieCard = ({ title = "Avenger", imageUrl }) => {
 
   return (
     <div className="card">
-      <img src={imgFinalUrl} alt="" />
+      <img src={imgFinalUrl} alt={title} />
       <Typography text={title} type="title"></Typography>
     </div>
   );

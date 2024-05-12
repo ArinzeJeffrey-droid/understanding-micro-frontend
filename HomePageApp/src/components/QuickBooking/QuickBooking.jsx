@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
+const Typography = React.lazy(() => import("components/Typography"));
 import "./QuickBooking.scss";
 
 const QuickBooking = () => {
@@ -12,12 +13,13 @@ const QuickBooking = () => {
       date,
       time,
     };
-    console.log(booking);
   };
 
   return (
     <div className="quick-booking-container">
-      <span className="header">Quick Booking </span>
+      <Suspense fallback={null}>
+        <Typography text="Quick Booking" type="title" />
+      </Suspense>
       <div className="spacer"></div>
       <div className="mr-1">
         <span>Select Movie</span>

@@ -1,7 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   mode: "development",
@@ -15,24 +14,9 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"),
     },
     open: true,
-    port: 3002,
+    port: 9000,
+    historyApiFallback: true,
   },
-  plugins: [
-    new ModuleFederationPlugin({
-      name: "components",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./MovieCard": "./src/components/MovieCard/MovieCard.jsx",
-        "./BuyButton": "./src/components/Button/BuyButton/BuyButton.jsx",
-        "./Typography": "./src/components/Typography/Typography.jsx"
-      },
-    }),
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-    }),
-  ],
   module: {
     rules: [
       {
@@ -69,11 +53,26 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|jpeg|gif|jpg)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.webp$/i,
+        use: ["file-loader","webp-loader"],
+      },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "index.html",
+    }),
+  ],
   optimization: {
     splitChunks: {
-      chunks: "async",
+      chunks: "all",
     },
   },
 };
