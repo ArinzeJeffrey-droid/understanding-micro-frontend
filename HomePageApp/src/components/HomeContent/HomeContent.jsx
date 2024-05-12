@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import QuickBooking from "../QuickBooking/QuickBooking.jsx";
+const MovieCard = React.lazy(() => import("components/MovieCard"));
 import "./HomeContent.scss";
 
-const dummyItem = [{name:"Dummy Movie"}]
-
 const HomeContent = (props) => {
-  const [movies, setMovies] = useState(dummyItem);
+  const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    // Add the logic to load the movies from server and set to the state
+  useEffect(async () => {
+    const request = await fetch("http://localhost:5555/movies");
+    const results = await request.json();
+    setMovies(results);
   }, []);
 
   const movieClicked = (item) => {
@@ -18,12 +19,13 @@ const HomeContent = (props) => {
   };
 
   const renderMovieList = () => {
-    let items = movies.map((item) => {
+    let items = movies.map((movie) => {
       return (
-        <div onClick={() => movieClicked(item)} key={item.name}>
-          <div>Load the cards Here</div>
-          {/* Load the Movie Card Here */}
-        </div>
+        <li onClick={() => movieClicked(movie)} key={movie.name}>
+          <Suspense fallback={null}>
+            <MovieCard title={movie.name} imageUrl={movie.imageUrl} />
+          </Suspense>
+        </li>
       );
     });
 
@@ -33,9 +35,7 @@ const HomeContent = (props) => {
   return (
     <div className="home-content-container">
       <QuickBooking></QuickBooking>
-      <div className="movies-container">
-        {renderMovieList()}
-      </div>
+      <ul className="movies-container">{renderMovieList()}</ul>
     </div>
   );
 };
