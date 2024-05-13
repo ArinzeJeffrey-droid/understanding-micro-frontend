@@ -26,6 +26,16 @@ Replace <app-name> with the name of the app you want to restart.
 
 For detailed instructions on installing Overmind, refer to the [Overmind installation guide](https://github.com/DarthSim/overmind).
 
+## Urls
+
+| App                 | Url                          |
+| ------------------- | ---------------------------- |
+| ExpressServer       | http://localhost:5555/movies |
+| HomePageApp         | http://localhost:3000        |
+| MAIN APP (MovieApp) | http://localhost:9000        |
+| ReactComponents     | http://localhost:3002        |
+| SeatSelectionApp    | http://localhost:3003        |
+
 ## My notes
 
 ### Using ModuleFederationPlugin
@@ -82,7 +92,7 @@ const renderMovieList = () => {
 
 return (
   <div className="home-content-container">
-    <QuickBooking></QuickBooking>
+    <QuickBooking />
     <Suspense fallback={null}>
       <ul className="movies-container">{renderMovieList()}</ul>
     </Suspense>
