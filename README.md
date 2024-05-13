@@ -4,7 +4,27 @@ This is a simple application designed to help me understand how micro frontends 
 
 ## How to run project
 
-// TODO: create procfile to use overmind to run the node processes 
+**Install Dependencies**: Run the setup script to install npm dependencies for each app:
+
+```sh
+script/setup
+```
+
+**Manage Processes**: This project utilizes Overmind to manage processes for each app. To start all processes, use:
+
+```sh
+overmind start
+```
+
+If you need to restart a specific process, open another terminal and use:
+
+```sh
+overmind restart <app-name>
+```
+
+Replace <app-name> with the name of the app you want to restart.
+
+For detailed instructions on installing Overmind, refer to the [Overmind installation guide](https://github.com/DarthSim/overmind).
 
 ## My notes
 

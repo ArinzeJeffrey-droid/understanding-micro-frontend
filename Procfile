@@ -1,5 +1,5 @@
-DetailsPageApp: overmind start --name=DetailsPageApp npm:serve
-ExpressServer: overmind start --name=ExpressServer npm:dev
-HomePageApp: overmind start --name=HomePageApp npm:serve
-ReactComponents: overmind start --name=ReactComponents npm:serve
-SeatSelectionApp: overmind start --name=SeatSelectionApp npm:serve
+DetailsPageApp: cd DetailsPageApp && npm run serve
+ExpressServer: cd ExpressServer && npm run dev
+HomePageApp: cd HomePageApp && npm run serve
+ReactComponents: cd ReactComponents && npm run serve
+SeatSelectionApp: cd SeatSelectionApp && npm run serve

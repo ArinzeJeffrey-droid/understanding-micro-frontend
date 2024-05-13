@@ -1,0 +1,16 @@
+#!/bin/bash
+
+APPS=("DetailsPageApp" "ExpressServer" "HomePageApp" "ReactComponents" "SeatSelectionApp")
+
+for app in "${APPS[@]}"; do
+  if [ -d "$app" ]; then
+    cd "$app" || exit
+    echo "Installing dependencies for $app..."
+    npm install
+    cd - || exit
+  else
+    echo "Directory $app not found."
+  fi
+done
+
+echo "All apps have been setup."
