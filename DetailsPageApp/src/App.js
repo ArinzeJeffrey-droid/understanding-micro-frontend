@@ -5,7 +5,7 @@ import DetailsContent from "./components/DetailsContent/DetailsContent.jsx";
 const App = () => {
   return (
     <div className="App">
-      <DetailsContent></DetailsContent>
+      <DetailsContent />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APPS=("DetailsPageApp" "ExpressServer" "HomePageApp" "ReactComponents" "SeatSelectionApp")
+APPS=("DetailsPageApp" "ExpressServer" "HomePageApp" "ReactComponents" "SeatSelectionApp" "MovieApp")
 
 for app in "${APPS[@]}"; do
   if [ -d "$app" ]; then

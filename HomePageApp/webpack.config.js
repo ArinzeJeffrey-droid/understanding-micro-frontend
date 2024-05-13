@@ -14,7 +14,7 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, "dist"),
     },
-    open: true,
+    open: false,
     port: 3000,
   },
   plugins: [
@@ -22,8 +22,13 @@ module.exports = {
       name: "home",
       filename: "remoteEntry.js",
       remotes: {
-        components: "components@http://localhost:3002/remoteEntry.js"
-      }
+        components: "components@http://localhost:3002/remoteEntry.js",
+        movieapp: "movieapp@http://localhost:9000/remoteEntry.js"
+      },
+      exposes: {
+        "./HomePage": "./src/components/HomeContent/HomeContent.jsx",
+      },
+      shared: ["react", "react-dom"]
     }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({

@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   mode: "development",
@@ -59,11 +60,24 @@ module.exports = {
       },
       {
         test: /\.webp$/i,
-        use: ["file-loader","webp-loader"],
+        use: ["file-loader", "webp-loader"],
       },
     ],
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "movieapp",
+      filename: "remoteEntry.js",
+      remotes: {
+        homepage: "home@http://localhost:3000/remoteEntry.js",
+        detailspage: "details@http://localhost:3001/remoteEntry.js",
+        seatselection: "seatselection@http://localhost:3003/remoteEntry.js",
+      },
+      exposes: {
+        "./MovieData": "./src/movieObservable.js",
+      },
+      shared: ["react", "react-dom"],
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",

@@ -25,19 +25,19 @@ const App = () => {
       <h3>Movie Card Component</h3>
       <MovieCard></MovieCard>
       <h3>Button Components</h3>
-      <SnowButton title="Snow Button"></SnowButton>
+      <SnowButton title="Snow Button" />
       <br></br>
-      <GlitchButton title="Glitch Button"></GlitchButton>
+      <GlitchButton title="Glitch Button" />
       <br></br>
-      <SimpleButton title="Simple Button"></SimpleButton>
+      <SimpleButton title="Simple Button" />
       <br></br>
-      <BuyButton title="Buy Button"></BuyButton>
+      <BuyButton title="Buy Button" />
       <h3>Typography Styles</h3>
       <Typography text="Title text" type="title" />
       <br></br>
       <Typography text="Paragraph Text" type="paragraph" />
       <h3>Dropdown</h3>
-      <DropDown options={dropdownList}></DropDown>
+      <DropDown options={dropdownList} />
     </div>
   );
 };

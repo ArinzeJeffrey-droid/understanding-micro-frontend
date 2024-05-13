@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./DetailsContent.scss";
 
-const DetailsContent = (props) => {
+const DetailsContent = ({ routing }) => {
+  const { location, history } = routing;
   const [movie, setMovie] = useState([]);
   const [date, setDate] = useState("01/02/2022");
   const [time, setTime] = useState("10 Am");
@@ -10,7 +11,7 @@ const DetailsContent = (props) => {
     const resp = await fetch("http://localhost:5555/movies");
     const data = await resp.json();
 
-    let pathArr = props.location.pathname.split("/");
+    let pathArr = location.pathname.split("/");
     let id = pathArr[pathArr.length - 1];
 
     const selectedMovie = data.filter((movie) => {
@@ -30,7 +31,13 @@ const DetailsContent = (props) => {
       movie: movie.id,
       date,
       time,
-    };   
+    };
+
+    import("movieapp/MovieData").then((module) => {
+      const movieData = module.default;
+      movieData.next(booking);
+      history.push("/book");
+    });
   };
 
   return (

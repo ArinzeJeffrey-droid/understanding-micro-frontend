@@ -14,7 +14,7 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, "dist"),
     },
-    open: true,
+    open: false,
     port: 3002,
   },
   plugins: [

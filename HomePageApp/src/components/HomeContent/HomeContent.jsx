@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import QuickBooking from "../QuickBooking/QuickBooking.jsx";
 const MovieCard = React.lazy(() => import("components/MovieCard"));
 import "./HomeContent.scss";
+import RoutingContext from "../../utils/RoutingProvider.js";
 
 const HomeContent = (props) => {
   const [movies, setMovies] = useState([]);
@@ -31,12 +32,14 @@ const HomeContent = (props) => {
   };
 
   return (
-    <div className="home-content-container">
-      <QuickBooking></QuickBooking>
-      <Suspense fallback={null}>
-        <ul className="movies-container">{renderMovieList()}</ul>
-      </Suspense>
-    </div>
+    <RoutingContext.Provider value={props.routing}>
+      <div className="home-content-container">
+        <QuickBooking />
+        <ul className="movies-container">
+          <Suspense fallback={null}>{renderMovieList()} </Suspense>
+        </ul>
+      </div>
+    </RoutingContext.Provider>
   );
 };
 

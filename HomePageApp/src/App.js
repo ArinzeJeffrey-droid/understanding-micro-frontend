@@ -5,7 +5,7 @@ import HomeContent from "./components/HomeContent/HomeContent.jsx";
 const App = () => {
   return (
     <div className="App">
-      <HomeContent></HomeContent>
+      <HomeContent />
     </div>
   );
 };
